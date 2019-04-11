@@ -1,42 +1,29 @@
 ---
-path: "styled-container"
-git:  "https://github.com/gwtuts/styled-container.git"
-date: "2019-03-19"
-title: "Responsive Container Component with React and Styled-Components."
-subtitle: "In this project we will create a responsive bootstrap-like component that we can reuse across that site with reactjs and styled-components."
-thumbnail: null
+path: /tutorials/styled-container
+date: 2019-03-19
+title: 'Responsive Container Component with React and Styled-Components.'
+subtitle: 'In this project we will create a responsive bootstrap-like component that we can reuse across that site with reactjs and styled-components.'
+thumbnail: https://cdn-images-1.medium.com/max/800/1*8slP0diGduUQy3qk9N7HsQ.png
+tags: ['react', 'component', 'container', 'responsive', 'styled-components']
 ---
 
-## Responsive Container Component with React and Styled-Components.
+#responsive-container
 
-#### Setup
+# Responsive Container Component with React and Styled-Components.
+
+![](thumbnail.png)
+
+## Setup
 
 First things first you're going to need to install the _styled-components_ node package.
 
 `npm install --save styled-components`
 
-The way I like to structure my files for something like this is to create a **Theme.js** file in my **src/** directory.
+Now we are able to start creating our Theme object.
 
-<!--Open up your `Theme.js` file and start by importing the 'styled-components' dependency.
-
-
-```javascript
-// Theme.js
-import styled from 'styled-components';
-```
--->
-
-Now we are able to start creating our **Theme** object.
 This will act like sass / scss / less variables and we will be able use them across all of our components.
 
 ```javascript
-// Theme.js
-```
-
-Now that these value are set in an object we will be able to export the object and use it across our components.
-
-```javascript
-// Theme.js
 // Theme.js
 export const Theme = {
   colors: {
@@ -49,7 +36,7 @@ export const Theme = {
     body: 'Roboto'
   },
   padding: '1rem 0.5rem'
-};
+}
 
 export const Breakpoints = {
   mobileS: 320,
@@ -59,38 +46,29 @@ export const Breakpoints = {
   laptop: 1140,
   laptopL: 1440,
   desktop: 2560
-};
+}
 
-export default { Theme, breakpoints };
-```
-
-Now lets create a new file in our **src/** directory named **Styled.js**
-
-> The actual structure for this kind of thing is entirely up to you this is just what I has been working for me.
-
-I find it easier / less cluttered if I have a **src/Theme.js** with all my variables and things I might need to quickly change across the site in this file and the `src/Styled.js`
-
-In your `Styled.js` file import the `styled-components` dependency, and our `Theme` / `Breakpoints` objects
-
-```javascript
-// Styled.js
-import styled from 'styled-components';
-import { Theme, Breakpoints } from './Theme';
-
-const Container = styled.div`
-  padding: ${Theme.padding};
-`;
-```
-
-So now we created a styled-component that has it's padding set from our **Theme** Object.
-That's cool and all but it's not really that useful. Lets make this thing responsive.
-
-```javascript
-// Styled.js
-export const MQ = {};
+export const MQ = {}
 for (const key in ScreenSizes) {
   if (key)
     MQ[key] = styles =>
-      `@media screen and (min-width: ${ScreenSizes[key]}px) { ${styles} }`;
+      `@media screen and (min-width: ${ScreenSizes[key]}px) { ${styles} }`
 }
+export default Theme
+```
+
+> I like to create a _Theme.js_ file in my src/ directory to store my Theme obj and Breakpoints object.
+
+## Usage
+
+```javascript
+import Theme from 'theme'
+
+const Container = styled.div`
+  max-width: 100%;
+  margin: 0 auto;
+  padding: ${Theme.padding};
+  ${MQ.laptopL(`max-width: 1140px`)}
+  ${MQ.desktop(`max-width: 1440px`)};
+`
 ```
