@@ -13,14 +13,14 @@ const ScreenSizes = {
   tablet: 639,
   laptop: 1140,
   laptopL: 1440,
-  desktop: 2560
-};
+  desktop: 2560,
+}
 
-const MQ = {};
+const MQ = {}
 for (const key in ScreenSizes) {
   if (key)
     MQ[key] = styles =>
-      `@media screen and (min-width: ${ScreenSizes[key]}px) { ${styles} }`;
+      `@media screen and (min-width: ${ScreenSizes[key]}px) { ${styles} }`
 }
 
 // export const Container = styled.div`
@@ -31,4 +31,4 @@ for (const key in ScreenSizes) {
 //   ${MQ.laptopL(`max-width: 1140px`)}
 //   ${MQ.desktop(`max-width: 1440px`)};
 // `;z
-console.log();
+console.log()
