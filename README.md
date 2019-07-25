@@ -1,4 +1,5 @@
 ---
+path: styled-container
 date: 2019-03-19
 title: Styled-Components responsive container.
 thumbnail: tbn.jpg
